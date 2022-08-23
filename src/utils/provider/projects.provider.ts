@@ -24,4 +24,24 @@ export const projects = [
     title: "2019",
     tags: ["Design", "Typography", "Branding"],
   },
+  {
+    url: "#",
+    title: "Love Corn",
+    tags: ["Design", "Typography", "Branding"],
+  },
+  {
+    url: "#",
+    title: "Zucker punch",
+    tags: ["Design", "Typography", "Branding"],
+  },
+  {
+    url: "#",
+    title: "Muddy bites",
+    tags: ["Design", "Typography", "Branding"],
+  },
+  {
+    url: "#",
+    title: "Airly",
+    tags: ["Design", "Typography", "Branding"],
+  },
 ]

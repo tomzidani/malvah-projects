@@ -16,6 +16,9 @@
     }
 
     &__image {
+      // Just to clear the display for the infinite scroll
+      display: none;
+
       position: fixed;
       top: 30vh;
       left: 45vw;
@@ -27,6 +30,9 @@
     }
 
     &__infos {
+      // Just to clear the display for the infinite scroll
+      display: none;
+
       position: fixed;
       top: 50%;
       left: 70vw;
