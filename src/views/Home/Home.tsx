@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { ProjectItem } from "../../components/content"
+import { getScrollPosition, setScrollPosition } from "../../utils/helpers/scroll.helpers"
 import { projects } from "../../utils/provider/projects.provider"
 import "./Home.scss"
 
@@ -17,39 +18,34 @@ const Home = () => {
     return clonedItems.length * itemHeight
   }
 
-  const getScrollPosition = () => {
-    return ((menuItems.current.pageYOffset || menuItems.current.scrollTop) - (menuItems.current.clientTop || 0)) as number
-  }
-
-  const setScrollPosition = (scrollPosition: number) => {
-    menuItems.current.scrollTop = scrollPosition
-  }
-
   const initScroll = () => {
-    const scrollPosition = getScrollPosition()
+    const scrollPosition = getScrollPosition(menuItems.current)
 
-    scrollPosition <= 0 && setScrollPosition(1)
+    scrollPosition <= 0 && setScrollPosition(1, menuItems.current)
   }
+
+  const updateScroll = (clonesHeight: any) => {
+    const scrollPosition = getScrollPosition(menuItems.current)
+
+    const needToScrollToTop = clonesHeight + scrollPosition >= menuItems.current.scrollHeight
+    const needToScrollToBottom = scrollPosition <= 0
+
+    const scrollTo = needToScrollToTop || needToScrollToBottom ? (needToScrollToTop ? 1 : menuItems.current.scrollHeight - clonesHeight) : null
+
+    if (scrollTo) setScrollPosition(scrollTo, menuItems.current)
+  }
+
   useEffect(() => {
     const clonesHeight = cloneItems()
+
     initScroll()
 
     menuItems.current.style.scrollBehavior = "unset"
 
-    const scrollUpdate = () => {
-      const scrollPosition = getScrollPosition()
-
-      if (clonesHeight + scrollPosition >= menuItems.current.scrollHeight) {
-        setScrollPosition(1)
-      } else if (scrollPosition <= 0) {
-        setScrollPosition(menuItems.current.scrollHeight - clonesHeight)
-      }
-    }
-
-    menuItems.current.addEventListener("scroll", scrollUpdate)
+    menuItems.current.addEventListener("scroll", () => updateScroll(clonesHeight))
 
     return () => {
-      menuItems.current.removeEventListener("scroll", scrollUpdate)
+      menuItems.current.removeEventListener("scroll", () => updateScroll(clonesHeight))
     }
   }, [menuItems])
 
