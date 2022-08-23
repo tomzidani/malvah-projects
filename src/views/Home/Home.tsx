@@ -42,10 +42,14 @@ const Home = () => {
 
     menuItems.current.style.scrollBehavior = "unset"
 
-    menuItems.current.addEventListener("scroll", () => updateScroll(clonesHeight))
+    const scrollListener = () => {
+      updateScroll(clonesHeight)
+    }
+
+    menuItems.current.addEventListener("scroll", scrollListener)
 
     return () => {
-      menuItems.current.removeEventListener("scroll", () => updateScroll(clonesHeight))
+      menuItems.current.removeEventListener("scroll", scrollListener)
     }
   }, [menuItems])
 
