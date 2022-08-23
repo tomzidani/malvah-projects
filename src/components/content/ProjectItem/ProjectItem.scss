@@ -16,17 +16,16 @@
     }
 
     &__image {
-      // Just to clear the display for the infinite scroll
-      display: none;
-
       position: fixed;
       top: 30vh;
       left: 45vw;
       width: auto;
-      height: clamp(200px, 20vw, 20vw);
+      height: clamp(200px, 25vw, 25vw);
 
       object-fit: cover;
       pointer-events: none;
+
+      transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     &__infos {

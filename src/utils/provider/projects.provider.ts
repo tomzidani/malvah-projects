@@ -10,7 +10,7 @@ export const projects = [
     tags: ["Shooting", "Motion Design", "Promoting"],
   },
   {
-    url: "#",
+    url: "https://images.unsplash.com/photo-1514517521153-1be72277b32f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
     title: "Doughnuts",
     tags: ["Typography", "Design", "Branding"],
   },
@@ -20,18 +20,18 @@ export const projects = [
     tags: ["Illustrations", "Social Media", "Branding"],
   },
   {
-    url: "#",
-    title: "2019",
+    url: "https://images.unsplash.com/photo-1599629954294-14df9ec8bc05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8b3Jlb3N8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    title: "Oreo",
     tags: ["Design", "Typography", "Branding"],
   },
   {
-    url: "#",
+    url: "https://images.unsplash.com/photo-1629822341703-4eb65f4c8d9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
     title: "Love Corn",
     tags: ["Design", "Typography", "Branding"],
   },
   {
     url: "#",
-    title: "Zucker punch",
+    title: "Zuckerpunch",
     tags: ["Design", "Typography", "Branding"],
   },
   {
