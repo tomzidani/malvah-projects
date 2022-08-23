@@ -57,7 +57,7 @@ const Home = () => {
     <main className="app-home">
       <section className="home__projects">
         <ul ref={menuItems}>
-          {renderItems.map((project, i) => (
+          {renderItems.map((project: any, i: any) => (
             <ProjectItem key={i} project={project} itemIndex={i} />
           ))}
         </ul>
