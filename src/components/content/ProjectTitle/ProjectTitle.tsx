@@ -10,6 +10,7 @@ const ProjectTitle = ({ title, handleMouseEnter, handleMouseLeave }: ProjectTitl
   return (
     <div className="item__title" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <h2>{title}</h2>
+      <h2 className="clone">{title}</h2>
     </div>
   )
 }
