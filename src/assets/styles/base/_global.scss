@@ -1,0 +1,10 @@
+html,
+body {
+  font-family: "Poppins";
+  background-color: map-get($settings, bg-color);
+}
+
+ul,
+li {
+  list-style: none;
+}

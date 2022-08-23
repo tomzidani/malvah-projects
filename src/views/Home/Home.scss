@@ -1,0 +1,16 @@
+.app-home {
+  .home {
+    &__projects {
+      > ul {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding-left: 10vw;
+
+        overflow: auto;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+    }
+  }
+}
