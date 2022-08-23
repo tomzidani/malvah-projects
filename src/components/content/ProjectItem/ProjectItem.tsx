@@ -1,5 +1,6 @@
 import { useReducer, useRef } from "react"
 import { Hash } from "react-feather"
+import { animate } from "../../../utils/helpers/animate.helpers"
 import { reducer } from "../../../utils/reducers/projectItem.reducer"
 import ProjectImage from "../ProjectImage/ProjectImage"
 import ProjectTitle from "../ProjectTitle/ProjectTitle"
@@ -21,6 +22,8 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const listItem = useRef<any>(null)
 
+  const easeMethod = "easeInOutCubic"
+
   const makeParallax = (e: MouseEvent) => {
     const speed = -5
 
@@ -31,16 +34,28 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   }
 
   const handleMouseEnter = () => {
-    dispatch({ type: "CHANGE_OPACITY", payload: 1 })
-
+    handleOpacity(0, 1, 500)
     listItem.current.addEventListener("mousemove", makeParallax)
   }
 
   const handleMouseLeave = () => {
     listItem.current.removeEventListener("mousemove", makeParallax)
-
-    dispatch({ type: "CHANGE_OPACITY", payload: 0 })
+    handleOpacity(1, 0, 800)
     dispatch({ type: "CHANGE_COORDINATES", payload: initialState.parallaxPosition })
+  }
+
+  const handleOpacity = (initialOpacity: number, newOpacity: number, duration: number) => {
+    animate({
+      from: initialOpacity,
+      to: newOpacity,
+      onUpdate: (newOpacity: number, cb: Function) => {
+        dispatch({ type: "CHANGE_OPACITY", payload: newOpacity })
+        cb()
+      },
+      onComplete: () => {},
+      duration,
+      easeMethod,
+    })
   }
 
   return (
