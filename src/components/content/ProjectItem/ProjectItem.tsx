@@ -1,5 +1,6 @@
 import { useReducer, useRef } from "react"
 import { Hash } from "react-feather"
+import { reducer } from "../../../utils/reducers/projectItem.reducer"
 import ProjectImage from "../ProjectImage/ProjectImage"
 import ProjectTitle from "../ProjectTitle/ProjectTitle"
 import "./ProjectItem.scss"
@@ -14,30 +15,13 @@ const initialState = {
   parallaxPosition: { x: 0, y: -20 },
 }
 
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "CHANGE_OPACITY":
-      return {
-        ...state,
-        opacity: action.payload,
-      }
-    case "CHANGE_COORDINATES":
-      return {
-        ...state,
-        parallaxPosition: action.payload,
-      }
-    default:
-      throw new Error("")
-  }
-}
-
 const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   const { title, url, tags } = project
 
-  const listItem = useRef<any>(null)
   const [state, dispatch] = useReducer(reducer, initialState)
+  const listItem = useRef<any>(null)
 
-  const parallax = (e: MouseEvent) => {
+  const makeParallax = (e: MouseEvent) => {
     const speed = -5
 
     const x = (window.innerWidth - e.pageX * speed) / 75
@@ -49,11 +33,11 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   const handleMouseEnter = () => {
     dispatch({ type: "CHANGE_OPACITY", payload: 1 })
 
-    listItem.current.addEventListener("mousemove", parallax)
+    listItem.current.addEventListener("mousemove", makeParallax)
   }
 
   const handleMouseLeave = () => {
-    listItem.current.removeEventListener("mousemove", parallax)
+    listItem.current.removeEventListener("mousemove", makeParallax)
 
     dispatch({ type: "CHANGE_OPACITY", payload: 0 })
     dispatch({ type: "CHANGE_COORDINATES", payload: initialState.parallaxPosition })
@@ -72,7 +56,7 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
         </p>
 
         <ul>
-          {tags.map((tag, i) => (
+          {tags.map((tag: any, i: any) => (
             <li key={i}>
               <span>{tag}</span>
             </li>
