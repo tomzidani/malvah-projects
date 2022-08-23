@@ -1,0 +1,40 @@
+@import "../../../assets/styles/abstract/mixins";
+
+.app-cursor {
+  .cursor {
+    &__cursor {
+      position: fixed;
+
+      background: transparent;
+      border-radius: 50%;
+      border: solid 3px var(--color-primary);
+      overflow: hidden;
+      pointer-events: none;
+      transform: translate3d(0, 0, 0);
+      transform-origin: center;
+
+      transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1), height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+      z-index: 1000;
+
+      &.regular {
+        width: 12rem;
+        height: 12rem;
+      }
+
+      &.medium {
+        width: 6rem;
+        height: 6rem;
+      }
+
+      &.small {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @include mq("tablet", max) {
+        display: none;
+      }
+    }
+  }
+}

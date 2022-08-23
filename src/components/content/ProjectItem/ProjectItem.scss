@@ -1,3 +1,5 @@
+@import "../../../assets/styles/abstract/mixins";
+
 .project-item {
   padding: 5px 0;
 
@@ -115,6 +117,16 @@
           transform: translateY(0);
           opacity: 1;
         }
+      }
+    }
+  }
+
+  @include mq("tablet", max) {
+    padding: 25px 0;
+
+    .item {
+      &__infos {
+        display: none;
       }
     }
   }

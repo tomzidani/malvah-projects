@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react"
+import { useContext, useReducer, useRef } from "react"
 import cn from "classnames"
 import { Hash } from "react-feather"
 import { animate } from "../../../utils/helpers/animate.helpers"
@@ -6,6 +6,7 @@ import { reducer } from "../../../utils/reducers/projectItem.reducer"
 import ProjectImage from "../ProjectImage/ProjectImage"
 import ProjectTitle from "../ProjectTitle/ProjectTitle"
 import "./ProjectItem.scss"
+import { CursorContext } from "../../../utils/contexts/CursorContext"
 
 type ProjectItemType = {
   project: any
@@ -26,6 +27,8 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const listItem = useRef<any>(null)
 
+  const { setSize } = useContext(CursorContext)
+
   const easeMethod = "easeInOutCubic"
 
   const makeParallax = (e: MouseEvent) => {
@@ -38,6 +41,8 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   }
 
   const handleMouseEnter = () => {
+    setSize("regular")
+
     handleScale(0.8, 1, 500)
     handleOpacity(0, 1, 500)
     handleRotation(state.rotationPosition, 500)
@@ -46,6 +51,8 @@ const ProjectItem = ({ project, itemIndex }: ProjectItemType) => {
   }
 
   const handleMouseLeave = () => {
+    setSize("small")
+
     listItem.current.removeEventListener("mousemove", makeParallax)
     handleScale(1, initialState.scale, 800)
     handleOpacity(1, 0, 800)
